@@ -1,0 +1,186 @@
+/* style.css */
+
+/* Basic body and container styling */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #a992c0, #d1506e);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    color: #fff;
+    overflow: hidden; /* Hide overflow to prevent scrollbars from bubbles */
+    position: relative; /* Needed for positioning bubbles */
+}
+
+/* ---------------------------------- */
+/* ANIMATED BUBBLE BACKGROUND STYLES  */
+/* ---------------------------------- */
+.login-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1); /* Subtle overlay for contrast */
+    border-radius: 20px;
+    z-index: -1; /* Place behind content */
+}
+
+.bubbles {
+    position: absolute;
+    bottom: -150px; /* Start bubbles off-screen */
+    width: 100%;
+    height: 100%;
+    z-index: -2; /* Ensure bubbles are behind everything */
+}
+
+.bubbles li {
+    position: absolute;
+    list-style: none;
+    display: block;
+    width: 20px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.15); /* Bubble color */
+    animation: animateBubbles 25s linear infinite;
+    bottom: -150px; /* Start position for animation */
+    border-radius: 50%; /* Make them round */
+}
+
+/* Different sizes and positions for variety */
+.bubbles li:nth-child(1) { left: 25%; width: 80px; height: 80px; animation-delay: 0s; animation-duration: 15s; }
+.bubbles li:nth-child(2) { left: 10%; width: 20px; height: 20px; animation-delay: 2s; animation-duration: 12s; }
+.bubbles li:nth-child(3) { left: 70%; width: 20px; height: 20px; animation-delay: 4s; animation-duration: 18s; }
+.bubbles li:nth-child(4) { left: 40%; width: 60px; height: 60px; animation-delay: 0s; animation-duration: 10s; }
+.bubbles li:nth-child(5) { left: 65%; width: 20px; height: 20px; animation-delay: 0s; animation-duration: 14s; }
+.bubbles li:nth-child(6) { left: 75%; width: 110px; height: 110px; animation-delay: 3s; animation-duration: 20s; }
+.bubbles li:nth-child(7) { left: 35%; width: 150px; height: 150px; animation-delay: 7s; animation-duration: 25s; }
+.bubbles li:nth-child(8) { left: 50%; width: 25px; height: 25px; animation-delay: 15s; animation-duration: 16s; }
+.bubbles li:nth-child(9) { left: 20%; width: 15px; height: 15px; animation-delay: 2s; animation-duration: 35s; }
+.bubbles li:nth-child(10) { left: 85%; width: 150px; height: 150px; animation-delay: 11s; animation-duration: 11s; }
+
+/* Keyframe animation for bubbles */
+@keyframes animateBubbles {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+        border-radius: 0;
+    }
+    100% {
+        transform: translateY(-1000px) rotate(720deg);
+        opacity: 0;
+        border-radius: 50%;
+    }
+}
+
+/* ---------------------------------- */
+/* LOGIN FORM STYLES (existing, slightly adjusted) */
+/* ---------------------------------- */
+.login-container {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px); /* For Safari */
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    animation: fadeIn 1s ease-in-out;
+    position: relative; /* Ensure it stacks above bubbles but has blur */
+    z-index: 1; /* Keep content above bubbles */
+}
+
+/* Form styling */
+.login-form {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    text-align: center;
+}
+
+.form-title {
+    margin-bottom: 30px;
+    font-weight: 600;
+}
+
+/* Input field animation */
+.input-group {
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px 0;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid #fff;
+    outline: none;
+    color: #fff;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.input-group label {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    color: #ccc;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+/* Input focus effect: label moves up */
+.input-group input:focus ~ label,
+.input-group input:valid ~ label {
+    top: -20px;
+    font-size: 12px;
+    color: #8c8cff;
+}
+
+/* Button styling and animation */
+.login-button {
+    background: #8c8cff;
+    border: none;
+    color: #fff;
+    padding: 15px;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.login-button:hover {
+    background: #a1a1ff;
+    transform: scale(1.05);
+}
+
+.form-links {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-links a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s ease;
+}
+
+.form-links a:hover {
+    color: #8c8cff;
+}
+
+/* Keyframe animation for initial fade-in of the form itself */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
